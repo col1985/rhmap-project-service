@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var log = require('./lib/logger')('pingRoute');
+var log = require('./../lib/logger')('pingRoute');
 
 function pingRoute() {
     var ping = new express.Router();
