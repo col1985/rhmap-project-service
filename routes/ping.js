@@ -11,8 +11,8 @@ function pingRoute() {
 
     // GET REST endpoint - query params may or may not be populated
     ping.get('/', function(req, res) {
-        log.info('In ping route GET / req.query=%s', req.query);
-        var world = req.query && req.query.hello ? req.query.hello : 'World';
+        log.info('In ping route GET / req.query=', req.query);
+        var world = req.query && req.query.hello ? req.query.hello : 'Cloud App';
 
         // see http://expressjs.com/4x/api.html#res.json
         res.json({
