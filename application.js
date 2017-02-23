@@ -5,11 +5,13 @@ var cors = require('cors');
 var pkg = require('./package.json')
 var log = require('./lib/logger')(pkg.name);
 var reqTimer = require('fh-request-timer');
+var fs = require('fs');
 
+var routesDir = __dirname + '/routes';
 
 // list the endpoints which you want to make securable here
 var securableEndpoints = [
-    '/hello'
+    '/ping'
 ];
 
 var app = express();
@@ -29,7 +31,14 @@ app.use(express.static(__dirname + '/public'));
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-app.use('/ping', require('./routes/ping.js')());
+// load routes dynamically
+fs.readdirSync(routesDir).forEach(function(file) {
+    // remove extension
+    var route = file.slice(0, -3);
+
+    // create route
+    app.use(route, require(routesDir + '/' + file)());
+});
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
