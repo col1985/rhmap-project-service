@@ -35,7 +35,7 @@
         "test": "grunt unit",
         "debug": "grunt serve",
         "start": "node application.js",
-        "logs": "./bin/fhlogs.sh rkkyacp5h6oplrnm7zuqai5b dev"
+        "logs": "./bin/fhlogs.sh $npm_package_appID dev"
     },
     "license": "mit"
 }
